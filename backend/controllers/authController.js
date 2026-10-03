@@ -57,7 +57,10 @@ export async function login(req, res) {
     });
   } catch (err) {
     console.error('[Auth Login ERROR]', err);
-    return res.status(500).json({ error: 'Internal server error during authentication' });
+    return res.status(500).json({
+      error: 'Internal server error during authentication',
+      details: err.message
+    });
   }
 }
 

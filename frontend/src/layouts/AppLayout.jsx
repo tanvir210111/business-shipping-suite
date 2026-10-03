@@ -44,7 +44,7 @@ export default function AppLayout() {
       {/* Main Content Area: Smoothly shifts right when sidebar expands on hover */}
       <div
         className={`flex-1 flex flex-col min-w-0 transition-all duration-200 ease-in-out ${
-          isCompactActive ? 'lg:pl-[60px]' : 'lg:pl-[230px]'
+          isCompactActive ? 'lg:pl-[68px]' : 'lg:pl-[268px]'
         }`}
       >
         {/* Mobile Top Header */}
@@ -58,8 +58,12 @@ export default function AppLayout() {
             <div className="w-5 h-0.5 bg-current" />
           </button>
           <div className="flex items-center gap-2 font-bold text-xs">
-            <Ship className="w-4 h-4 text-[#0866ff]" />
-            <span>BUSINESS SHIPPING SUITE</span>
+            <div className="w-6 h-6 rounded-md bg-[#0866ff] flex items-center justify-center text-white shrink-0 shadow-2xs">
+              <Ship className="w-3.5 h-3.5" />
+            </div>
+            <span className="truncate uppercase font-extrabold text-[11px] text-[#050505] dark:text-white">
+              BUSINESS SHIPPING SUITE
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <button

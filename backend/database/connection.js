@@ -50,12 +50,25 @@ export async function initDatabase() {
     }
   }
 
-  // Resilient fallback engine
-  const dataDir = path.resolve(__dirname, '../../database/data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+  // Resilient fallback engine: check local directory first, then root database dir
+  const localDataDir = path.resolve(__dirname, './data');
+  const rootDataDir = path.resolve(__dirname, '../../database/data');
+  let dbFile = path.join(localDataDir, 'business_shipping_suite.sqlite');
+
+  if (!fs.existsSync(dbFile) && fs.existsSync(path.join(rootDataDir, 'business_shipping_suite.sqlite'))) {
+    dbFile = path.join(rootDataDir, 'business_shipping_suite.sqlite');
+  } else if (!fs.existsSync(dbFile)) {
+    if (!fs.existsSync(localDataDir)) {
+      try {
+        fs.mkdirSync(localDataDir, { recursive: true });
+      } catch {
+        // Fallback to /tmp if filesystem is read-only
+        const tmpDir = path.resolve('/tmp');
+        if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+        dbFile = path.join(tmpDir, 'business_shipping_suite.sqlite');
+      }
+    }
   }
-  const dbFile = path.join(dataDir, 'business_shipping_suite.sqlite');
 
   await new Promise((resolve, reject) => {
     sqliteDb = new sqlite3.Database(dbFile, (err) => {

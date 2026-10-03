@@ -44,6 +44,7 @@ import AllTools from './pages/all-tools/AllTools';
 import Billing from './pages/billing/Billing';
 import EventsManager from './pages/events/EventsManager';
 import GetStarted from './pages/onboarding/GetStarted';
+import Profile from './pages/profile/Profile';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -112,6 +113,7 @@ export default function App() {
                     <Route path="/reports" element={<Reports />} />
                     <Route path="/notifications" element={<Notifications />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/get-started" element={<GetStarted />} />
                     <Route path="/billing-and-payments" element={<Navigate to="/billing" replace />} />
 

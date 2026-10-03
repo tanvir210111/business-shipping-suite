@@ -4,6 +4,7 @@ import Sidebar from '../components/common/Sidebar';
 import { Search, X, Ship, Compass, ArrowRight, HelpCircle } from 'lucide-react';
 import api from '../services/api';
 import { useBusiness } from '../context/BusinessContext';
+import UserAccountControl from '../components/common/UserAccountControl';
 
 export default function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -60,12 +61,16 @@ export default function AppLayout() {
             <Ship className="w-4 h-4 text-[#0866ff]" />
             <span>BUSINESS SHIPPING SUITE</span>
           </div>
-          <button
-            onClick={() => setSearchModalOpen(true)}
-            className="p-2 text-slate-500 hover:text-slate-800"
-          >
-            <Search className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setSearchModalOpen(true)}
+              className="p-1.5 text-slate-500 hover:text-slate-800"
+              aria-label="Search"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+            <UserAccountControl compact />
+          </div>
         </div>
 
         {/* View Outlet */}

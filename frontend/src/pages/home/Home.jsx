@@ -10,6 +10,7 @@ import { useBusiness } from '../../context/BusinessContext';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import { formatNumber, formatCurrency, formatDate } from '../../utils/formatters';
+import UserAccountControl from '../../components/common/UserAccountControl';
 
 export default function Home() {
   const { user } = useAuth();
@@ -76,19 +77,26 @@ export default function Home() {
 
   return (
     <div className="max-w-[1140px] w-full mx-auto px-4 sm:px-6 py-4 space-y-3.5">
-      {/* 1. TOP BREADCRUMB / PROFILE HEADER */}
-      <div className="flex items-center gap-1.5 text-[11px] text-[#65676b] dark:text-[#b0b3b8] px-0.5">
-        <div className="w-4 h-4 rounded-full bg-[#e4e6eb] dark:bg-[#3a3b3c] flex items-center justify-center font-bold text-[9px] text-[#050505] dark:text-white shrink-0">
-          B
+      {/* 1. TOP BREADCRUMB / PROFILE HEADER WITH USER ACCOUNT CONTROL */}
+      <div className="flex items-center justify-between gap-2 text-[11px] text-[#65676b] dark:text-[#b0b3b8] px-0.5">
+        <div className="flex items-center gap-1.5 min-w-0">
+          <div className="w-4 h-4 rounded-full bg-[#e4e6eb] dark:bg-[#3a3b3c] flex items-center justify-center font-bold text-[9px] text-[#050505] dark:text-white shrink-0">
+            B
+          </div>
+          <span className="font-semibold text-[#050505] dark:text-white truncate">Business Shipping Suite</span>
+          <span className="text-[10px] text-[#65676b] dark:text-[#b0b3b8] hidden sm:inline">Portfolio</span>
+          <ChevronRight className="w-3 h-3 text-[#8a8d91] shrink-0" />
+          <div className="w-4 h-4 rounded-full bg-[#0866ff] flex items-center justify-center text-white text-[9px] shrink-0">
+            <Ship className="w-2.5 h-2.5" />
+          </div>
+          <span className="font-semibold text-[#050505] dark:text-white truncate">{currentChannel.name}</span>
+          <span className="text-[10px] text-[#65676b] dark:text-[#b0b3b8] hidden sm:inline">Profile</span>
         </div>
-        <span className="font-semibold text-[#050505] dark:text-white">Business Shipping Suite</span>
-        <span className="text-[10px] text-[#65676b] dark:text-[#b0b3b8]">Portfolio</span>
-        <ChevronRight className="w-3 h-3 text-[#8a8d91]" />
-        <div className="w-4 h-4 rounded-full bg-[#0866ff] flex items-center justify-center text-white text-[9px] shrink-0">
-          <Ship className="w-2.5 h-2.5" />
+
+        {/* User Account Control (Top-Right) */}
+        <div className="shrink-0">
+          <UserAccountControl />
         </div>
-        <span className="font-semibold text-[#050505] dark:text-white truncate">{currentChannel.name}</span>
-        <span className="text-[10px] text-[#65676b] dark:text-[#b0b3b8]">Profile</span>
       </div>
 
       {/* 2. COVER PHOTO & PROFILE HEADER CARD */}
